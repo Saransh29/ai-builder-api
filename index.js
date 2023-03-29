@@ -17,8 +17,8 @@ const openai = new OpenAIApi(configuration);
 app.use(express.json());
 app.use(
   cors({
-    // origin: "https://ai-builder-gules.vercel.app",
-    origin: "http://localhost:3000",
+    origin: "https://ai-builder-gules.vercel.app",
+    // origin: "http://localhost:3000",
     methods: "GET,POST,OPTIONS",
     // allowedHeaders: ["Content-Type", "Authorization"],
     // maxAge: 600,
