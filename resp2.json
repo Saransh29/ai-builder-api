@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-6zLtwggoIkwQiTql2AWDlOsVrkPwT",
+  "object": "chat.completion",
+  "created": 1680080216,
+  "model": "gpt-3.5-turbo-0301",
+  "usage": {
+    "prompt_tokens": 146,
+    "completion_tokens": 723,
+    "total_tokens": 869
+  },
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Sorry, I cannot provide a visual output as I am a language model AI. However, to build a landing page for a house rental company, you can follow this code structure:\n\n---starthtml---\n\n<div>\n  <h1>Welcome to [Company Name] House Rental</h1>\n  <img src=\"[image1_url]\" alt=\"House 1\">\n  <img src=\"[image2_url]\" alt=\"House 2\">\n  <img src=\"[image3_url]\" alt=\"House 3\">\n</div>\n\n<div>\n  <h2>Enter Your Details</h2>\n  <form>\n    <label for=\"name\">Name</label>\n    <input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Your name..\">\n    \n    <label for=\"email\">Email</label>\n    <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"Your email..\">\n    \n    <label for=\"phone\">Phone</label>\n    <input type=\"tel\" id=\"phone\" name=\"phone\" placeholder=\"Your phone number..\">\n    \n    <label for=\"address\">Address</label>\n    <input type=\"text\" id=\"address\" name=\"address\" placeholder=\"Your address..\">\n    \n    <input type=\"submit\" value=\"Submit\">\n  </form>\n</div>\n\n<div>  \n  <h2>Pricing</h2>\n  <ul>\n    <li>House 1: $[price1] per month</li>\n    <li>House 2: $[price2] per month</li>\n    <li>House 3: $[price3] per month</li>\n  </ul>\n</div>\n\n<div>\n  <h2>Contact Us</h2>\n  <p>Phone: [phone_number]</p>\n  <p>Address: [company_address]</p>\n  <p>Email: [company_email]</p>\n</div>\n\n<div>\n  <h2>Meet the Founders</h2>\n  <ul>\n    <li>\n      <img src=\"[founder1_image_url]\" alt=\"Founder 1\">\n      <p>[founder1_name] - [founder1_title]</p>\n    </li>\n    <li>\n      <img src=\"[founder2_image_url]\" alt=\"Founder 2\">\n      <p>[founder2_name] - [founder2_title]</p>\n    </li>\n  </ul>\n</div>\n\n---endhtml---\n\n---startcss---\n\ndiv {\n  margin: 20px;\n}\n\nh1, h2 {\n  text-align: center;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  width: 50%;\n  margin: 0 auto;\n}\n\nlabel, input {\n  margin: 10px 0;\n}\n\ninput[type=\"submit\"] {\n  background-color: #008CBA;\n  color: white;\n  cursor: pointer;\n}\n\nul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n}\n\nli {\n  margin-bottom: 10px;\n}\n\nimg {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  float: left;\n}\n\np {\n  margin-left: 110px;\n}\n\n---endcss---\n\n---startjs---\n// No JavaScript needed for this landing page\n---endjs--- \n\nNote: Replace [placeholders] with actual content and image URLs."
+      },
+      "finish_reason": "stop",
+      "index": 0
+    }
+  ]
+}

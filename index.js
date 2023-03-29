@@ -43,6 +43,24 @@ app.post("/GPT", async (req, res) => {
   }
 });
 
+//test with axios
+app.post("/build", async (req, res) => {
+  const reqbody = req.body;
+  console.log(reqbody);
+  const resp = await axios.post(
+    "https://api.openai.com/v1/chat/completions",
+    reqbody,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+    }
+  );
+  console.log(resp.data);
+  res.status(200).json(resp.data);
+});
+
 app.post("/testing-api", async (req, res) => {
   const reqbody = req.body;
   const resp2 = {
@@ -89,8 +107,26 @@ app.post("/testing-api", async (req, res) => {
       },
     ],
   };
+  const resp3 = {
+    id: "chatcmpl-6zFN15OHxOfRwBp9MbMfOhIB8g0se",
+    object: "chat.completion",
+    created: 1680055111,
+    model: "gpt-3.5-turbo-0301",
+    usage: { prompt_tokens: 132, completion_tokens: 158, total_tokens: 290 },
+    choices: [
+      {
+        message: {
+          role: "assistant",
+          content:
+            '---starthtml---\n<button id="barkButton" onclick="playBark()">Bark! 🐶</button>\n\n<audio id="barkSound">\n  <source src="https://www.soundjay.com/animals/dog-bark-01.mp3" type="audio/mpeg">\n</audio>\n---endhtml---\n\n---startjs---\nfunction playBark() {\n  var barkSound = document.getElementById("barkSound");\n  barkSound.play();\n}\n---endjs---\n\n---startcss---\nbutton {\n  font-size: 24px;\n  padding: 10px 20px;\n  background-color: #ffd152;\n  color: #fff;\n  border-radius: 5px;\n  cursor: pointer;\n}\n---endcss---',
+        },
+        finish_reason: "stop",
+        index: 0,
+      },
+    ],
+  };
 
-  res.status(200).json(resp2);
+  res.status(200).json(resp3);
 });
 
 // Start the server
