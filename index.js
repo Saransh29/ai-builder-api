@@ -17,8 +17,8 @@ const openai = new OpenAIApi(configuration);
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://ai-builder-gules.vercel.app",
-    // origin: "http://localhost:3000",
+    // origin: "https://ai-builder-gules.vercel.app",
+    origin: "http://localhost:3000",
     methods: "GET,POST,OPTIONS",
     // allowedHeaders: ["Content-Type", "Authorization"],
     // maxAge: 600,
@@ -83,6 +83,33 @@ app.post("/mongo", async (req, res) => {
     });
   }
 });
+
+app.get("/generations", async (req, res) => {
+  try {
+    const generations = await Post.find();
+    res.status(200).json({ success: true, data: generations });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Unable to get generations, please try again",
+    });
+  }
+});
+
+app.get("/post/:id", async (req, res) => {
+  const { id } = req.params;
+  // console.log(id);
+  try {
+    const posts = await Post.find({ _id: id });
+    res.status(200).json({ success: true, data: posts });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Unable to get posts, please try again",
+    });
+  }
+});
+
 app.post("/testing-api", async (req, res) => {
   const reqbody = req.body;
   const resp = {
