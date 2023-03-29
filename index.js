@@ -87,6 +87,8 @@ app.post("/mongo", async (req, res) => {
 app.get("/generations", async (req, res) => {
   try {
     const generations = await Post.find();
+    // return all generations in random order
+    const shuffled = generations.sort(() => 0.5 - Math.random());
     res.status(200).json({ success: true, data: generations });
   } catch (err) {
     res.status(500).json({
