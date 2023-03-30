@@ -17,16 +17,12 @@ const openai = new OpenAIApi(configuration);
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://www.ai-builder.live",
-    // origin: "http://localhost:3000",
+    origin: process.env.ORIGIN_URL,
     methods: "GET,POST,OPTIONS",
-    // allowedHeaders: ["Content-Type", "Authorization"],
-    // maxAge: 600,
-
-    // preflightContinue: false,
-    // optionsSuccessStatus: 204,
   })
 );
+
+// make this endpoint last more than 30 seconds
 
 app.post("/GPT", async (req, res) => {
   try {
