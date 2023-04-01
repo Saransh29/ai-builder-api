@@ -10,7 +10,7 @@ const connectDB = require("./mongo/connect.js");
 dotenv.config();
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY2,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -51,7 +51,7 @@ app.post("/build", async (req, res) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY2}`,
       },
     }
   );
@@ -62,7 +62,7 @@ app.post("/build", async (req, res) => {
 
 app.post("/mongo", async (req, res) => {
   try {
-    const { prompt, html, css, js } = req.body;
+    const { prompt, html, css, js, author } = req.body;
     console.log(prompt);
 
     const newPost = await Post.create({
@@ -70,6 +70,7 @@ app.post("/mongo", async (req, res) => {
       html,
       css,
       js,
+      author,
     });
 
     res.status(200).json({ success: true, data: newPost });
@@ -98,6 +99,15 @@ app.put("/mongo/:id", async (req, res) => {
       message: "Unable to update a post, please try again",
     });
   }
+});
+
+app.get("/mongo/:author", async (req, res) => {
+  const { author } = req.params;
+  console.log(author);
+  try {
+    const generations = await Post.find({ author: author });
+    res.status(200).json({ success: true, data: generations });
+  } catch (err) {}
 });
 
 app.get("/generations", async (req, res) => {
