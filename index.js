@@ -112,9 +112,10 @@ app.get("/mongo/:author", async (req, res) => {
 
 app.get("/generations", async (req, res) => {
   try {
-    const generations = await Post.find();
-    // return all generations in random order
-    const shuffled = generations.sort(() => 0.5 - Math.random());
+    // const generations = await Post.find();
+    // get generations sorted by date
+    const generations = await Post.find().sort({ date: -1 });
+
     res.status(200).json({ success: true, data: generations });
   } catch (err) {
     res.status(500).json({
