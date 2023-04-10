@@ -103,9 +103,9 @@ app.put("/mongo/:id", async (req, res) => {
 
 app.get("/mongo/:author", async (req, res) => {
   const { author } = req.params;
-  console.log(author);
+  // console.log(author);
   try {
-    const generations = await Post.find({ author: author });
+    const generations = await Post.find({ author: author }).sort({ date: -1 });
     res.status(200).json({ success: true, data: generations });
   } catch (err) {}
 });
