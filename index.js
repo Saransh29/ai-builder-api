@@ -125,6 +125,30 @@ app.get("/generations", async (req, res) => {
   }
 });
 
+app.get("/pagination", async (req, res) => {
+  try {
+    const PAGE_SIZE = 10;
+    const page = parseInt(req.query.page || "0");
+    const total = await Post.countDocuments({});
+    const posts = await Post.find({})
+      .sort({ date: -1 })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      data: posts,
+    });
+
+    // const generations = await Post.find().sort({ date: -1 });
+
+    // res.status(200).json({ success: true, data: generations });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Unable to get generations, please try again",
+    });
+  }
+});
 app.get("/post/:id", async (req, res) => {
   const { id } = req.params;
   // console.log(id);
