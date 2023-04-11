@@ -41,13 +41,33 @@ app.post("/GPT", async (req, res) => {
   }
 });
 
+const systemMessage = {
+  role: "system",
+  content:
+    "Write code. with full functionality, descriptive sections, good design,vibrant colors, for the images add https://source.unsplash.com/featured/?{prompt here} to the src. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
+};
+
 //test with axios
 app.post("/build", async (req, res) => {
-  const reqbody = req.body;
-  console.log(reqbody);
+  // const reqbody = req.body;
+  const { command } = req.body;
+
+  let apiMessages = {
+    role: "user",
+    content: command,
+  };
+
+  const apiRequestBody = {
+    model: "gpt-3.5-turbo",
+    messages: [systemMessage, apiMessages],
+  };
+
+  // console.log(apiRequestBody);
+
+  // console.log(reqbody);
   const resp = await axios.post(
     "https://api.openai.com/v1/chat/completions",
-    reqbody,
+    apiRequestBody,
     {
       headers: {
         "Content-Type": "application/json",
