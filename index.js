@@ -147,7 +147,7 @@ app.get("/generations", async (req, res) => {
 
 app.get("/pagination", async (req, res) => {
   try {
-    const PAGE_SIZE = 10;
+    const PAGE_SIZE = 12;
     const page = parseInt(req.query.page || "0");
     const total = await Post.countDocuments({});
     const posts = await Post.find({})
