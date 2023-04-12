@@ -15,6 +15,23 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 app.use(express.json());
+
+var whitelist = [
+  "http://localhost:3000",
+  "https://ai-builder-git-testing-saransh29.vercel.app",
+  "https://www.ai-builder.live",
+];
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
 app.use(
   cors({
     origin: process.env.ORIGIN_URL,
@@ -22,30 +39,42 @@ app.use(
   })
 );
 
-// make this endpoint last more than 30 seconds
-
-app.post("/GPT", async (req, res) => {
-  try {
-    const { model, messages } = req.body;
-
-    const airesponse = await openai.createChatCompletion({
-      model: model,
-      messages: messages,
-    });
-
-    console.log(airesponse);
-    res.status(200).json(airesponse.data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Something went wrong");
-  }
-});
+app.use(
+  cors({
+    origin: process.env.ORIGIN_URL,
+    methods: "GET,POST,PUT,OPTIONS",
+  })
+);
 
 const systemMessage = {
   role: "system",
   content:
     "Write code. with full functionality, descriptive sections, good design,vibrant colors, for the images add https://source.unsplash.com/featured/?{prompt here} to the src. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
 };
+
+app.post("/GPT", cors(corsOptions), async (req, res) => {
+  try {
+    const { command } = req.body;
+
+    let apiMessages = {
+      role: "user",
+      content: command,
+    };
+
+    console.log(command);
+
+    const airesponse = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [systemMessage, apiMessages],
+    });
+
+    // console.log(airesponse);
+    res.status(200).json(airesponse.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong");
+  }
+});
 
 //test with axios
 app.post("/build", async (req, res) => {
