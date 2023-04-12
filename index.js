@@ -32,19 +32,14 @@ var corsOptions = {
   },
 };
 
-app.use(
-  cors({
-    origin: process.env.ORIGIN_URL,
-    methods: "GET,POST,PUT,OPTIONS",
-  })
-);
+app.use(cors(corsOptions));
 
-app.use(
-  cors({
-    origin: process.env.ORIGIN_URL,
-    methods: "GET,POST,PUT,OPTIONS",
-  })
-);
+// app.use(
+//   cors({
+//     origin: process.env.ORIGIN_URL,
+//     methods: "GET,POST,PUT,OPTIONS",
+//   })
+// );
 
 const systemMessage = {
   role: "system",
