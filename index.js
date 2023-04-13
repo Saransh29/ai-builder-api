@@ -107,7 +107,7 @@ app.post("/build", async (req, res) => {
 app.post("/mongo", async (req, res) => {
   try {
     const { prompt, html, css, js, author } = req.body;
-    console.log(prompt);
+    console.log("trying to upload", prompt);
 
     const newPost = await Post.create({
       prompt,
