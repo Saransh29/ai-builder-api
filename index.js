@@ -119,6 +119,7 @@ app.post("/mongo", async (req, res) => {
 
     res.status(200).json({ success: true, data: newPost });
   } catch (err) {
+    console.log("failed to upload", prompt);
     res.status(500).json({
       success: false,
       message: "Unable to create a post, please try again",
