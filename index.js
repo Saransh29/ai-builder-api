@@ -73,7 +73,6 @@ app.post("/GPT", cors(corsOptions), async (req, res) => {
 
 //test with axios
 app.post("/build", async (req, res) => {
-  // const reqbody = req.body;
   const { command } = req.body;
 
   let apiMessages = {
@@ -85,23 +84,24 @@ app.post("/build", async (req, res) => {
     model: "gpt-3.5-turbo",
     messages: [systemMessage, apiMessages],
   };
+  try {
+    const resp = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      apiRequestBody,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY2}`,
+        },
+      }
+    );
+    // console.log(resp.data);
 
-  // console.log(apiRequestBody);
-
-  // console.log(reqbody);
-  const resp = await axios.post(
-    "https://api.openai.com/v1/chat/completions",
-    apiRequestBody,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY2}`,
-      },
-    }
-  );
-  // console.log(resp.data);
-
-  res.status(200).json(resp.data);
+    res.status(200).json(resp.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong");
+  }
 });
 
 app.post("/mongo", async (req, res) => {
