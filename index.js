@@ -179,6 +179,7 @@ app.get("/pagination", async (req, res) => {
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
     res.json({
+      total: total,
       totalPages: Math.ceil(total / PAGE_SIZE),
       data: posts,
     });
