@@ -1,38 +1,48 @@
 const express = require("express");
 const app = express();
-const axios = require("axios");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { Configuration, OpenAIApi } = require("openai");
-const Post = require("./mongo/post.js");
+
 const connectDB = require("./mongo/connect.js");
+const bodyParser = require("body-parser");
 
 dotenv.config();
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY2,
-});
-const openai = new OpenAIApi(configuration);
+app.use(bodyParser.json());
+
+const corsOptions = require("./config/cors");
+app.use(cors(corsOptions));
+
+const apiRoutes = require("./routes/apiRoutes.js");
+const mongoRoutes = require("./routes/mongoRoutes.js");
+
+app.use("/api/v1", apiRoutes);
+app.use("/api/v1/", mongoRoutes);
+
+// const configuration = new Configuration({
+//   apiKey: process.env.OPENAI_API_KEY2,
+// });
+// const openai = new OpenAIApi(configuration);
 
 app.use(express.json());
 
-var whitelist = [
-  "http://localhost:3000",
-  "https://ai-builder-git-testing-saransh29.vercel.app",
-  "https://www.ai-builder.live",
-];
+// var whitelist = [
+//   "http://localhost:3000",
+//   "https://ai-builder-git-testing-saransh29.vercel.app",
+//   "https://www.ai-builder.live",
+// ];
 
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // app.use(
 //   cors({
@@ -41,6 +51,7 @@ app.use(cors(corsOptions));
 //   })
 // );
 
+/*
 const systemMessage = {
   role: "system",
   content:
@@ -236,6 +247,7 @@ app.post("/testing-api", async (req, res) => {
 
   res.status(200).json(resp);
 });
+*/
 
 const port = process.env.PORT || 5000;
 // app.listen(port, () => {
