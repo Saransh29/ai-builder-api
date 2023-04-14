@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 
-const connectDB = require("./mongo/connect.js");
 const bodyParser = require("body-parser");
 
 dotenv.config();
@@ -21,17 +21,21 @@ app.use("/api/v1/", mongoRoutes);
 
 app.use(express.json());
 
-const port = process.env.PORT || 5000;
-
-const startServer = async () => {
+const connectDB = async () => {
   try {
-    connectDB(process.env.MONGODB_URL);
-    app.listen(port, () => {
-      console.log(`listening on http://localhost:${port}`);
-    });
+    const conn = await mongoose.connect(process.env.MONGODB_URL);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    process.exit(1);
   }
 };
 
-startServer();
+const port = process.env.PORT || 5000;
+
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`listening on http://localhost:${port}`);
+  });
+});
+
