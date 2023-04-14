@@ -15,6 +15,7 @@ exports.createPost = async (req, res) => {
 
     res.status(200).json({ success: true, data: newPost });
   } catch (err) {
+    const { prompt } = req.body;
     console.log("---failed to upload---", prompt);
     res.status(500).json({
       success: false,
