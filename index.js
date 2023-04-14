@@ -107,7 +107,7 @@ app.post("/build", async (req, res) => {
 app.post("/mongo", async (req, res) => {
   try {
     const { prompt, html, css, js, author } = req.body;
-    console.log("trying to upload", prompt);
+    console.log("---Uploading---", prompt);
 
     const newPost = await Post.create({
       prompt,
@@ -119,7 +119,7 @@ app.post("/mongo", async (req, res) => {
 
     res.status(200).json({ success: true, data: newPost });
   } catch (err) {
-    console.log("failed to upload", prompt);
+    console.log("---failed to upload---", prompt);
     res.status(500).json({
       success: false,
       message: "Unable to create a post, please try again",
