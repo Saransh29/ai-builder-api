@@ -1,0 +1,21 @@
+{
+    "id": "chatcmpl-75a0C5wNifortTrRtS0nFRX9zdgtG",
+    "object": "chat.completion",
+    "created": 1681564388,
+    "model": "gpt-3.5-turbo-0301",
+    "usage": {
+        "prompt_tokens": 78,
+        "completion_tokens": 474,
+        "total_tokens": 552
+    },
+    "choices": [
+        {
+            "message": {
+                "role": "assistant",
+                "content": "<body>\n  <header>\n    <h1>Welcome to our Car Showroom</h1>\n    <nav>\n      <ul>\n        <li><a href=\"#featured-cars\">Featured Cars</a></li>\n        <li><a href=\"#services\">Our Services</a></li>\n        <li><a href=\"#about-us\">About Us</a></li>\n      </ul>\n    </nav>\n  </header>\n  \n  <section id=\"featured-cars\">\n    <h2>Featured Cars</h2>\n    <div class=\"car-card\">\n      <img src=\"https://source.unsplash.com/featured/?car\" alt=\"Car\">\n      <h3>2021 Mercedes-Benz AMG C 63 S Sedan</h3>\n      <p>$90,000</p>\n    </div>\n    <div class=\"car-card\">\n      <img src=\"https://source.unsplash.com/featured/?bmw\" alt=\"Car\">\n      <h3>2021 BMW M3 Sedan</h3>\n      <p>$87,000</p>\n    </div>\n    <div class=\"car-card\">\n      <img src=\"https://source.unsplash.com/featured/?audi\" alt=\"Car\">\n      <h3>2021 Audi RS 6 Avant</h3>\n      <p>$110,000</p>\n    </div>\n  </section>\n  \n  <section id=\"services\">\n    <h2>Our Services</h2>\n    <ul>\n      <li>Trade-ins Accepted</li>\n      <li>Financing Available</li>\n      <li>Vehicle Maintenance</li>\n      <li>Detailing Services</li>\n    </ul>\n  </section>\n  \n  <section id=\"about-us\">\n    <h2>About Us</h2>\n    <p>We are a luxury car dealership that specializes in providing our customers with the highest quality vehicles and services. Our team of experts are dedicated to making your car buying experience as enjoyable and stress-free as possible. Visit us today to find the car of your dreams!</p>\n  </section>\n  \n  <footer>\n    <p>&copy; 2021 Car Showroom. All rights reserved.</p>\n  </footer>\n</body>"
+            },
+            "finish_reason": "stop",
+            "index": 0
+        }
+    ]
+}

@@ -15,9 +15,11 @@ app.use(cors(corsOptions));
 
 const apiRoutes = require("./routes/apiRoutes.js");
 const mongoRoutes = require("./routes/mongoRoutes.js");
+const testRoutes = require("./routes/testRoutes.js");
 
 app.use("/api/v1", apiRoutes);
 app.use("/api/v1/", mongoRoutes);
+app.use("/api/v1/", testRoutes);
 
 app.use(express.json());
 
@@ -38,4 +40,3 @@ connectDB().then(() => {
     console.log(`listening on http://localhost:${port}`);
   });
 });
-
