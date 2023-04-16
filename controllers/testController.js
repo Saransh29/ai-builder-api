@@ -157,8 +157,8 @@ exports.getPaginatedGenerations = async (req, res) => {
   try {
     const PAGE_SIZE = 12;
     const page = parseInt(req.query.page || "0");
-    const total = await Postv2.countDocuments({});
-    const posts = await Postv2.find({})
+    const total = await Postv2.countDocuments({ version: 2 });
+    const posts = await Postv2.find({ version: 2 })
       .sort({ date: -1 })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
