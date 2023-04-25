@@ -2,6 +2,7 @@ const whitelist = [
   "http://localhost:3000",
   "https://ai-builder-git-testing-saransh29.vercel.app",
   "https://www.ai-builder.live",
+  "https://main.d1o2dmhg3w7pah.amplifyapp.com",
 ];
 
 const corsOptions = {
