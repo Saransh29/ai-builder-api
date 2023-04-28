@@ -203,7 +203,7 @@ exports.getImages = async (req, res) => {
     const items = response.data.items;
     if (items && items.length > 0) {
       const imageUrl = items[0].link;
-      return res.status(200).send({ imageUrl });
+      return res.redirect(imageUrl);
     } else {
       return res
         .status(404)
