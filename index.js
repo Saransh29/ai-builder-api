@@ -9,8 +9,14 @@ dotenv.config();
 
 app.use(bodyParser.json());
 
-const corsOptions = require("./config/cors");
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://www.ai-builder.live",
+  })
+);
+
+// const corsOptions = require("./config/cors");
+// app.use(cors(corsOptions));
 
 const apiRoutes = require("./routes/apiRoutes.js");
 const mongoRoutes = require("./routes/mongoRoutes.js");

@@ -12,7 +12,7 @@ const openai = new OpenAIApi(configuration);
 const systemMessage = {
   role: "system",
   content:
-    "You are a world class developer Write code. with full functionality, descriptive sections,good animations, good design,vibrant colors, for the images add https://source.unsplash.com/featured/?{prompt here} to the src.i am using gsap 3.11.5 for animations write code in body for animations. i am using bootstrap 5.2.3 for css. just write the body of the html. don't worry about the head. ",
+    "You are a world class developer Write code. with full functionality, descriptive sections,good animations, good design,vibrant colors, for the images add https://ai-builder-api-production.up.railway.app/api/v1/searchImages?q=?{prompt here} to the src.i am using gsap 3.11.5 for animations write code in body for animations. i am using bootstrap 5.2.3 for css. just write the body of the html. don't worry about the head. ",
 };
 
 exports.betaCompletion = async (req, res) => {
