@@ -2,6 +2,7 @@ const { Configuration, OpenAIApi } = require("openai");
 const dotenv = require("dotenv");
 dotenv.config();
 const Postv2 = require("../mongo/postv2");
+const axios = require("axios");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY2,
@@ -176,5 +177,42 @@ exports.getPaginatedGenerations = async (req, res) => {
       success: false,
       message: "Unable to get generations, please try again",
     });
+  }
+};
+
+exports.getImages = async (req, res) => {
+  const query = req.query.q;
+  if (!query) {
+    return res.status(400).send({ error: 'Query parameter "q" is required.' });
+  }
+
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/customsearch/v1",
+      {
+        params: {
+          key: process.env.GOOGLE_API_KEY,
+          cx: process.env.GOOGLE_CSE_ID,
+          q: query,
+          searchType: "image",
+          num: 1,
+        },
+      }
+    );
+
+    const items = response.data.items;
+    if (items && items.length > 0) {
+      const imageUrl = items[0].link;
+      return res.status(200).send({ imageUrl });
+    } else {
+      return res
+        .status(404)
+        .send({ error: "No images found for the given query." });
+    }
+  } catch (error) {
+    console.error("Error fetching images:", error.message);
+    return res
+      .status(500)
+      .send({ error: "An error occurred while fetching images." });
   }
 };
