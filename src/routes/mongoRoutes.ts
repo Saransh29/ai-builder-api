@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+import { Router } from "express";
+import MongoController from "../controllers/mongoController";
 
 const {
   createPost,
@@ -8,7 +8,9 @@ const {
   getGenerations,
   getPaginatedGenerations,
   getPostById,
-} = require("../controllers/mongoController");
+} = MongoController;
+
+const router = Router();
 
 router.post("/mongo", createPost);
 router.put("/mongo/:id", updatePost);
@@ -17,4 +19,4 @@ router.get("/generations", getGenerations);
 router.get("/pagination", getPaginatedGenerations);
 router.get("/post/:id", getPostById);
 
-module.exports = router;
+export default router;
