@@ -2,25 +2,37 @@
   "name": "ai-builder-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": " nodemon index.js",
-    "repl": "node"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": " ts-node-dev src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "saransh",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.11.19",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
+    "axios": "^1.3.4",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "env-cmd": "^10.1.0",
     "express": "^4.18.1",
-    "axios": "^1.3.4",
-    "dotenv": "^16.0.3",
-    "body-parser": "^1.20.2",
-    "mongoose": "^7.0.3",
-    "openai": "^3.2.1",
-    "cors": "^2.8.5"
+    "lodash": "^4.17.21",
+    "mongodb": "^6.3.0",
+    "openai": "^4.25.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
   }
 }

@@ -6,8 +6,11 @@ const whitelist = [
 ];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+  origin: function (
+    origin: string | undefined,
+    callback: (error: Error | null, allow?: boolean) => void,
+  ) {
+    if (origin && whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -15,4 +18,4 @@ const corsOptions = {
   },
 };
 
-module.exports = corsOptions;
+export default corsOptions;
