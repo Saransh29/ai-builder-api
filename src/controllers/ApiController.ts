@@ -22,7 +22,7 @@ export default class ApiController {
       const command = get(req.body, "command", "");
 
       const chatCompletion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: TogetherAIModels.Mixtral8x7B,
         messages: [
           {
             role: "system",
