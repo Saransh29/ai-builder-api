@@ -4,7 +4,10 @@ const whitelist = [
   "https://www.ai-builder.live",
   "https://main.d1o2dmhg3w7pah.amplifyapp.com",
   "https://ai-builder-saransh29.vercel.app",
-  "https://ai-builder-saransh29.vercel.app/"
+  "https://ai-builder-saransh29.vercel.app/",
+  "https://builder.yime.in/",
+  "https://builder.yime.in",
+  
 ];
 
 const corsOptions = {
