@@ -13,12 +13,6 @@ server.use(express.json({ limit: "2gb" }));
 server.use(express.urlencoded({ limit: "2gb", extended: false }));
 server.use(express.json());
 
-// server.use(
-//   cors({
-//     origin: "https://www.ai-builder.live",
-//   }),
-// );
-
 server.use(cors(corsOptions));
 
 server.use("/api/v1", router);
